@@ -1,19 +1,23 @@
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   padding: 1em;
+  background-color: rgb(253, 219, 224);
 }
 
 h1 {
   font-size: 3em;
   margin: 0.25em 0;
+  color:rgb(216, 149, 159)
 }
 
 h3 {
   font-size: 2em;
   margin: 0.25em 0;
+  color: rgb(61, 61, 61);
 }
 
 p {
   font-size: 1em;
+  color: rgb(61, 61, 61);
 }
