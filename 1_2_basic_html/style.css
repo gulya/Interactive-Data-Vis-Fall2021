@@ -26,3 +26,7 @@ thead {
   background-color: slateblue;
   font-size: 2em;
 }
+
+.icon rect {
+  fill: pink;
+}
