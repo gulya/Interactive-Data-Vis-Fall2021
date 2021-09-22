@@ -17,7 +17,7 @@ The goals for this tutorial are:
 **BONUS:**
 
 - [x] Add a path to your SVG. Use the [MDN documentation on paths](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/path) to help you build a function to illustrate those paths. 
-- [ ] Add an image to your page using [image tags](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) (`<img />`). 
+- [x] Add an image to your page using [image tags](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) (`<img />`). 
 - [ ] Add a [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) or [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) to your page. 
 
 ## Deploy + Submit
