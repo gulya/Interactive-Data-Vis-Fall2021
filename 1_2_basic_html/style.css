@@ -30,3 +30,23 @@ thead {
 .icon rect {
   fill: pink;
 }
+
+#rect1 {
+  fill: steelblue;
+}
+
+#rect2 {
+  fill: pink;
+}
+
+#rect3 {
+  fill: red;
+}
+
+#rect4 {
+  fill: cyan;
+}
+
+#weird_triangle {
+  fill: purple;
+}
