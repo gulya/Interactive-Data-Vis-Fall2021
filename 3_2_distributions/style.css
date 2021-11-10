@@ -1,5 +1,5 @@
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Noto Sans Mono", sans-serif;
   font-size: 16px;
   padding: 1em;
 }
@@ -14,6 +14,15 @@ h3 {
   margin: 0.25em 0;
 }
 
-p {
+h4 {
   font-size: 1em;
+  margin: 0.25em 0;
+}
+
+.bubbles {
+  stroke-width: 2px;
+  stroke: white;
+}
+.bubbles:hover {
+  stroke: black;
 }
