@@ -1,10 +1,12 @@
+
+
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
   height = window.innerHeight * 0.7,
-  margin = { top: 20, bottom: 60, left: 60, right: 40 },
+  margin = { top: 60, bottom: 120, left: 60, right: 40 },
   radius = 5;
 // since we use our scales in multiple functions, they need global scope
-let xScale, yScale, x;
+let xScale, yScale, colorScale, xAxis, yAxis;
 
 /* APPLICATION STATE */
 let state = {
@@ -23,23 +25,27 @@ d3.csv('../data/lana_del_rey.csv', d3.autoType).then(raw_data => {
 // this will be run *one time* when the data finishes loading in
 function init() {
   /* SCALES */
-  //x=scale linear
-  xScale = d3.scaleLinear()
-      .domain([0, d3.max(state.data, d => d.Rating)])
-      .range([0, width - margin * 2])
-      .nice()
+  // xscale - categorical, activity
+  xScale = d3.scaleBand()
+    .domain(state.data.map(d=> d.Album))
+    // .range([0, width])
+    .range([margin.left, width - margin.right])    // visual variable
+    .paddingInner(.2)
+    .paddingOuter(.1);
 
     // yscale - linear,count
-  yScale = d3.scaleBand()
-    .domain(state.data.map(d => d.Album))
-    .range([0, height - margin])
-    .paddingInner(.2)
-    .paddingOuter(.1)
+  yScale = d3.scaleLinear()
+    .domain([3, d3.max(state.data, d => d.Rating)])
+    // .range([height, 0])
+    .range([height  - margin.bottom, 0])
+    .nice()
 
-      // Add X axis
-  x = d3.scaleLinear()
-      .domain([0, 4000])
-      .range([ 0, width]);
+  xAxis = d3.axisBottom()
+    .scale(xScale);
+
+  yAxis = d3.axisLeft()
+    .scale(yScale);
+
 
   draw(); // calls the draw function
 }
@@ -54,14 +60,30 @@ function draw() {
     .attr("width", width)
     .attr("height", height)
 
+  svg.append("g")
+    .attr("transform", `translate(${0}, ${height - margin.bottom})`)
+    .call(xAxis)
+    .selectAll("text")
+      .attr("transform", "translate(0,0)rotate(-30)")
+      .style("text-anchor", "end")
+      .style("font-family", "Noto Sans Mono");
 
-  //bars
+
+  svg.append("g")
+      .attr("transform", `translate(${margin.left}, ${0})`)
+      .call(yAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .style("font-family", "Noto Sans Mono");
+
+  // bars
   svg.selectAll("rect")
     .data(state.data)
     .join("rect")
-    // .attr("class", "bar")
-    .attr("y", d => yScale(d.Album))
-    .attr("x", d => xScale(0))
-    .attr("height", yScale.bandwidth())
-    .attr("width", d => xScale(d.Rating))
+    .attr("width", xScale.bandwidth())
+    .attr("height", d=> height - yScale(d.Rating) - margin.bottom)
+    .attr("x", d=>xScale(d.Album))
+    .attr("y", d=> yScale(d.Rating))
+    .attr("fill", "#ffcccc")
+    .style("font-family", "Noto Sans Mono");
 }
